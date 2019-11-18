@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Code\Const.cs" />
     <Compile Include="Code\DTO\BorderTimeDTO.cs" />
     <Compile Include="Code\FileStatisticWriter.cs" />
     <Compile Include="Code\HtmlParser.cs" />

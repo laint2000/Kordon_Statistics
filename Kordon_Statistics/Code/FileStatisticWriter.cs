@@ -41,8 +41,8 @@ namespace Kordon_Statistics.Code
         {
             var fileWriter = File.CreateText(fileName);
 
-            var valuesHeadere = string.Join(fieldDelimiter, BorderTimeDTO.GatesNames);
-            var header = $"Час{fieldDelimiter}{valuesHeadere}";
+            var valuesHeadere = string.Join(fieldDelimiter, BorderTimeDTO.GatesHeaders);
+            var header = $"Час{fieldDelimiter}День{fieldDelimiter}{valuesHeadere}";
 
             fileWriter.WriteLine(header);
             return fileWriter;
@@ -50,8 +50,24 @@ namespace Kordon_Statistics.Code
 
         private object getCommaSeparatedString(BorderTimeDTO val)
         {
-            var values = string.Join(fieldDelimiter, val.GatesTime);
-            return $"{val.CheckTime}{fieldDelimiter}{values}";
+            var dayOfWeek = GetDayOfWeekName(val.CheckTime.DayOfWeek);
+            var values = string.Join(fieldDelimiter, val.GatesTimeList);
+            return $"{val.CheckTime}{fieldDelimiter}{dayOfWeek}{fieldDelimiter}{values}";
+        }
+
+        private string GetDayOfWeekName(DayOfWeek dayOfWeek)
+        {
+            switch (dayOfWeek) 
+            {
+                case DayOfWeek.Monday: return "Mon";
+                case DayOfWeek.Tuesday: return "Tue";
+                case DayOfWeek.Wednesday: return "Wed";
+                case DayOfWeek.Thursday: return "Thu";
+                case DayOfWeek.Friday: return "Fri";
+                case DayOfWeek.Saturday: return "Sat";
+                case DayOfWeek.Sunday: return "Sun";
+                default: return "";
+            }
         }
     }
 }

@@ -21,12 +21,12 @@ namespace UnitTests
             var value = parser.Parse(connector.LoadString(""));
             
             //assert
-            var validTimes = new string[] { "00:10", "00:10", "-", "00:00", "-", 
-                "00:22", "00:12", "00:00" };
+            var validTimes = new string[] { "", "00:00", "00:12", "", "00:10", "00:10", "00:22", "00:00" };
 
-            for (var i = 0; i < value.GatesTime.Count; i++)
+            var gatesTimeList = value.GatesTimeList;
+            for (var i = 0; i < gatesTimeList.Count; i++)
             {
-                Assert.AreEqual(validTimes[i], value.GatesTime[i], $@"value.GatesTime[{i}] is invalid");
+                Assert.AreEqual(validTimes[i], gatesTimeList[i], $@"value.GatesTime[{i}] is invalid");
             }
         }
     }

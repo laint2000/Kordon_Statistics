@@ -9,14 +9,14 @@ namespace Kordon_Statistics.Code.DTO
     public class BorderTimeDTO
     {
         public readonly static int Count = 8;
-        private readonly static List<string> _gatesNames = new List<string>(Count) { "Ягодин-Дорогуск", "ВолодимирВолинський", "Краківець-Корчова",
-                                                                "Шегині–Медика", "РаваРуська-Хребенне", "Смільниця-Кросценко", 
-                                                                "Грушів-Будомєж", "Угринів-Долгобичув"};
-        private readonly List<string> _gatesTime = new List<string>(Count) { "", "", "", "", "", "", "", "" };
+        private readonly static string[] _gatesHeaders = new string[] { "Краківець", "Шегині", "Грушів", "РаваРуська",
+                                                                       "Ягодин", "В.Волинський", "Смільниця", "Угринів"};
+        private readonly Dictionary<string, string> _gatesTime = new Dictionary<string, string>();
 
         public DateTime CheckTime { get; set; }
 
-        public List<string> GatesTime => _gatesTime;
-        public static List<string> GatesNames => _gatesNames;
+        public Dictionary<string, string> GatesTime => _gatesTime;
+        public List<string> GatesTimeList => _gatesTime.OrderBy(r => Array.IndexOf(GatesNames.List, r.Key)).Select(r => r.Value).ToList();
+        public static string[] GatesHeaders => _gatesHeaders;
     }
 }

@@ -18,11 +18,13 @@ namespace Kordon_Statistics
     {
         private Downloader _downloader;
         private DateTime _lastCheck = new DateTime();
-        private const int CheckInterval = 15; //Minutes
-
+        //private const int CheckInterval = 15; //Minutes
+        
         public MainForm()
         {
             InitializeComponent();
+
+            this.WindowState = FormWindowState.Minimized;
 
             _downloader = CreateDownloader();
             timerGetData.Interval = 1000;
@@ -74,8 +76,8 @@ namespace Kordon_Statistics
         {
             var currentTime = DateTime.Now;
 
-            if (currentTime.Minute % CheckInterval != 0) return;
-            if (currentTime.Minute == _lastCheck.Minute) return;
+            if (currentTime.Minute != 0) return;
+            if (currentTime.Minute == _lastCheck.Minute && currentTime.Hour == _lastCheck.Hour) return;
 
             _lastCheck = currentTime;
 
