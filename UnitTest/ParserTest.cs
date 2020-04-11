@@ -30,7 +30,7 @@ namespace UnitTests
 
             //assert
             var actual = value.GatesTimeList;
-            var expected = new string[] { "", "00:00", "00:11", "", "00:10", "00:10", "00:22", "00:00" };
+            var expected = new string[] { "", "00:00", "00:12", "", "00:10", "00:10", "00:22", "00:00" };
 
             for (var i = 0; i < actual.Count; i++)
             {
