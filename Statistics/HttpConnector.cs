@@ -11,7 +11,6 @@ namespace Statistics
     public class HttpConnector : IHTTPConnector
     {
         public event Action<string> OnLoadStringComplete = delegate { };
-        public event Action<string, string, Stream> OnLoadStreamComplete = delegate { };
 
         public string LoadString(string url) 
         {

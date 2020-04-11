@@ -10,18 +10,11 @@ namespace Statistics.Fakes
     public class HttpConnectorFake : IHTTPConnector
     {
         //@"../../TestDataFiles/top20.html"
-        private string _fileName;
-
-        public HttpConnectorFake(string fileName)
-        {
-            _fileName = fileName;
-        }
-
         public event Action<string> OnLoadStringComplete = delegate { };
 
-        public string LoadString(string url)
+        public string LoadString(string fileName)
         {
-            var responseString = File.ReadAllText(_fileName);
+            var responseString = File.ReadAllText(fileName);
 
             OnLoadStringComplete(responseString);
             return responseString;
